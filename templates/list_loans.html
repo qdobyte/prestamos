@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Préstamos - Sistema de Gestión de Préstamos{% endblock %}
+
+{% block content %}
+<h1>Listado de Préstamos</h1>
+
+<!-- Agregar botón para nuevo préstamo -->
+<a class="btn btn-primary mb-2" href="{{ url_for('new_loan') }}">Nuevo Préstamo</a>
+
+<!-- Listado de préstamos existentes -->
+<div class="card mt-4">
+    <div class="card-header">
+        Préstamos Registrados
+    </div>
+    <div class="card-body">
+        {% if loans %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Estudiante</th>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Fecha de Préstamo</th>
+                    <th scope="col">Fecha de Devolución</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for loan in loans %}
+                <tr>
+                    <th scope="row">{{ loan.id }}</th>
+                    <td>{{ loan.student.nombre_completo }}</td>
+                    <td>{{ loan.book.nombre_libro }}</td>
+                    <td>{{ loan.loan_date }}</td>
+                    <td>{{ loan.due_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No hay préstamos registrados.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
