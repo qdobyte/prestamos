@@ -3,10 +3,10 @@
 {% block title %}Listado de Préstamos - Sistema de Gestión de Préstamos{% endblock %}
 
 {% block content %}
-<h1>Listado de Préstamos</h1>
-
-<!-- Agregar botón para nuevo préstamo -->
-<a class="btn btn-primary mb-2" href="{{ url_for('new_loan') }}">Nuevo Préstamo</a>
+<div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-3">
+    <h1 class="h3 mb-3 mb-md-0">Listado de Préstamos</h1>
+    <a class="btn btn-primary mt-3 mt-md-0" href="{{ url_for('new_loan') }}">Nuevo Préstamo</a>
+</div>
 
 <!-- Listado de préstamos existentes -->
 <div class="card mt-4">
@@ -15,35 +15,64 @@
     </div>
     <div class="card-body">
         {% if loans %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Estudiante</th>
-                    <th scope="col">Libro</th>
-                    <th scope="col">Fecha de Préstamo</th>
-                    <th scope="col">Fecha de Devolución</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for loan in loans %}
-                <tr>
-                    <th scope="row">{{ loan.id }}</th>
-                    <td>{{ loan.estudiante.nombre_completo }}</td>
-                    <td>{{ loan.libro.nombre_libro }}</td>
-                    <td>{{ loan.fecha_prestamo }}</td>
-                    <td>{{ loan.fecha_devolucion }}</td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href="{{ url_for('edit_loan', id=loan.id) }}">Editar</a>
-                        <form method="POST" action="{{ url_for('delete_loan', id=loan.id) }}" style="display: inline;">
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="d-none d-md-block">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Estudiante</th>
+                        <th scope="col">Libro</th>
+                        <th scope="col">Fecha de Préstamo</th>
+                        <th scope="col">Fecha de Devolución</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loan in loans %}
+                    <tr>
+                        <th scope="row">{{ loan.id }}</th>
+                        <td>{{ loan.estudiante.nombre_completo }}</td>
+                        <td>{{ loan.libro.nombre_libro }}</td>
+                        <td>{{ loan.fecha_prestamo }}</td>
+                        <td>{{ loan.fecha_devolucion }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-info" href="{{ url_for('edit_loan', id=loan.id) }}">
+                                <i class="fas fa-edit mr-1"></i> Editar
+                            </a>
+                            <form method="POST" action="{{ url_for('delete_loan', id=loan.id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="d-block d-md-none">
+            {% for loan in loans %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">#{{ loan.id }}</h5>
+                    <p class="card-text">
+                        <strong>Estudiante:</strong> {{ loan.estudiante.nombre_completo }}<br>
+                        <strong>Libro:</strong> {{ loan.libro.nombre_libro }}<br>
+                        <strong>Fecha de Préstamo:</strong> {{ loan.fecha_prestamo }}<br>
+                        <strong>Fecha de Devolución:</strong> {{ loan.fecha_devolucion }}
+                    </p>
+                    <a class="btn btn-outline-info btn-sm mb-1" href="{{ url_for('edit_loan', id=loan.id) }}">
+                        <i class="fas fa-edit mr-1"></i> Editar
+                    </a>
+                    <form method="POST" action="{{ url_for('delete_loan', id=loan.id) }}" style="display: inline;">
+                        <button type="submit" class="btn btn-outline-danger btn-sm mb-1">
+                            <i class="fas fa-trash-alt mr-1"></i> Eliminar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
         {% else %}
         <p>No hay préstamos registrados.</p>
         {% endif %}

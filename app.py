@@ -68,6 +68,8 @@ def edit_student(id):
 def delete_student(id):
     student = Estudiante.query.get(id)
     if student:
+        # Eliminar todos los préstamos asociados al estudiante
+        Prestamo.query.filter_by(estudiante_id=id).delete()
         db.session.delete(student)
         db.session.commit()
     return redirect(url_for('list_students'))
@@ -119,6 +121,8 @@ def edit_book(id):
 def delete_book(id):
     book = Libro.query.get(id)
     if book:
+        # Eliminar todos los préstamos asociados al libro
+        Prestamo.query.filter_by(libro_id=id).delete()
         db.session.delete(book)
         db.session.commit()
     return redirect(url_for('list_books'))

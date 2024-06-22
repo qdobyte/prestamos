@@ -3,8 +3,8 @@
 {% block title %}Inicio - Sistema de Préstamos de Libros{% endblock %}
 
 {% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">Bienvenido al Sistema de Préstamos de Libros</h1>
+<div class="jumbotron py-4">
+    <h1 class="display-5">Bienvenido al Sistema de Préstamos de Libros</h1>
     <p class="lead">Gestiona los préstamos de libros para los estudiantes de la Institución Universitaria Pascual Bravo.</p>
     <hr class="my-4">
     <p>Realiza un préstamo del libro que tanto has querido leer.</p>
@@ -12,15 +12,23 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        <h2>Gestión de Estudiantes</h2>
-        <p>Administra la información de los estudiantes.</p>
-        <p><a class="btn btn-secondary" href="{{ url_for('list_students') }}" role="button">Estudiantes &raquo;</a></p>
+    <div class="col-12 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Gestión de Estudiantes</h2>
+                <p class="card-text">Administra la información de los estudiantes.</p>
+                <a class="btn btn-outline-primary" href="{{ url_for('list_students') }}">Estudiantes &raquo;</a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6">
-        <h2>Gestión de Libros</h2>
-        <p>Administra la información de los libros.</p>
-        <p><a class="btn btn-secondary" href="{{ url_for('list_books') }}" role="button">Libros &raquo;</a></p>
+    <div class="col-12 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Gestión de Libros</h2>
+                <p class="card-text">Administra la información de los libros.</p>
+                <a class="btn btn-outline-success" href="{{ url_for('list_books') }}">Libros &raquo;</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
