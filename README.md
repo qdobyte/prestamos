@@ -6,55 +6,66 @@ Este proyecto consiste en una aplicación web para gestionar los préstamos de l
 
 ### Clonar el Repositorio
 
-**Clonar el repositorio desde GitHub:**
+1. **Clonar el repositorio desde GitHub:**
 
-   ```bash
-   git clone https://github.com/qdobyte/prestamos.git
-   cd prestamos
-    
+```bash
+git clone https://github.com/qdobyte/prestamos.git
+cd prestamos
+```
 
-# Crear y activar el entorno virtual
-   ```bash
-   python3 -m venv venv         # Linux/Mac
-   source venv/bin/activate     # Linux/Mac
-# o
-   ```bash
-   python -m venv venv          # Windows
-   venv\Scripts\activate        # Windows
+### Configurar el Entorno Virtual
 
-# Configurar variables de entorno (estas deben estar en un archivo .env en la raiz del proyecto)
-      FLASK_APP=app.py
-      FLASK_ENV=development
-      SQLALCHEMY_DATABASE_URI=mysql://usuario:password@localhost/biblioteca
+2. **Crear y activar un entorno virtual:**
+(Utiliza venv para crear un entorno virtual de Python)
 
+```bash
+python3 -m venv venv         # Linux/Mac
+source venv/bin/activate     # Linux/Mac
+```
+
+```bash
+python -m venv venv          # Windows
+venv\Scripts\activate        # Windows
+```
 ### Instalación de dependencias
 
-En el proyecto se distribuye un fichero (requirements.txt) con todas las dependencias. Para instalarlas
-basta con ejectuar:
+3. En el proyecto se distribuye un fichero (requirements.txt) con todas las dependencias. Para instalarlas
+basta con ejectuar: 
+```bash
+pip install -r requirements.txt
+```
 
-   ```bash
-   pip install -r requirements.txt
+### Variables de entorno
 
-# Inicializar base de datos
+4. Se debe crear un archivo .env en la raiz del proyecto
+```bash
+FLASK_APP=app.py
+FLASK_ENV=development
+SQLALCHEMY_DATABASE_URI=mysql://usuario:password@localhost/biblioteca
+```
 
-   ```bash
-   flask db init
-   flask db migrate
-   flask db upgrade
+### Inicializar base de datos
 
+5. Una vez creada la base de datos y configurado las variables de entorno se ejecutan las migraciones
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
 
-## Ejecución con el servidor que trae Flask
+### Ejecución con el servidor que trae Flask
 
 Una vez que hayas descargado el proyecto, creado las variables de entorno e instalado las dependencias,
 puedes arrancar el proyecto ejecutando:
 
-   ```bash   
-   flask run
+```bash   
+flask run
+```
 
-Esto levantará un servidor de desarrollo y deberías ver algo como:
+### Esto levantará un servidor de desarrollo y deberías ver algo como:
 ```bash  
-* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-
+Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
     
 
  
