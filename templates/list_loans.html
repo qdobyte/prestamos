@@ -30,10 +30,16 @@
                 {% for loan in loans %}
                 <tr>
                     <th scope="row">{{ loan.id }}</th>
-                    <td>{{ loan.student.nombre_completo }}</td>
-                    <td>{{ loan.book.nombre_libro }}</td>
-                    <td>{{ loan.loan_date }}</td>
-                    <td>{{ loan.due_date }}</td>
+                    <td>{{ loan.estudiante.nombre_completo }}</td>
+                    <td>{{ loan.libro.nombre_libro }}</td>
+                    <td>{{ loan.fecha_prestamo }}</td>
+                    <td>{{ loan.fecha_devolucion }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="{{ url_for('edit_loan', id=loan.id) }}">Editar</a>
+                        <form method="POST" action="{{ url_for('delete_loan', id=loan.id) }}" style="display: inline;">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -5,8 +5,8 @@
 {% block content %}
 <h1>Listado de Libros</h1>
 
-<!-- Agrega el botón de nuevo libro -->
-<a class="btn btn-primary mb-2" href="{{ url_for('new_book') }}">Nuevo Libro</a>
+<!-- Agrega el botón para agregar nuevo libro -->
+<a class="btn btn-primary mb-2" href="{{ url_for('new_book') }}">Agregar Libro</a>
 
 <!-- Listado de libros existentes -->
 <div class="card mt-4">
@@ -18,8 +18,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Nombre del Libro</th>
                     <th scope="col">Autor</th>
+                    <th scope="col">Fecha de Nacimiento</th>
+                    <th scope="col">Lugar de Nacimiento</th>
+                    <th scope="col">Nombre del Libro</th>
                     <th scope="col">Fecha de Publicación</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -27,9 +29,11 @@
             <tbody>
                 {% for book in books %}
                 <tr>
-                    <td>{{ book.nombre_libro }}</td>
                     <td>{{ book.nombre_autor }}</td>
-                    <td>{{ book.fecha_publicacion.date() }}</td>
+                    <td>{{ book.fecha_nacimiento_autor.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ book.lugar_nacimiento_autor }}</td>
+                    <td>{{ book.nombre_libro }}</td>
+                    <td>{{ book.fecha_publicacion.strftime('%Y-%m-%d') }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ url_for('edit_book', id=book.id) }}">Editar</a>
                         <a class="btn btn-sm btn-danger" href="{{ url_for('delete_book', id=book.id) }}">Eliminar</a>

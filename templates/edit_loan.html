@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Préstamo - Sistema de Gestión de Préstamos{% endblock %}
+
+{% block content %}
+<h1>Editar Préstamo</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="student_id">Estudiante:</label>
+        <select class="form-control" id="student_id" name="student_id" required>
+            {% for student in students %}
+            <option value="{{ student.id }}" {% if loan.estudiante_id == student.id %}selected{% endif %}>
+                {{ student.nombre_completo }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="book_id">Libro:</label>
+        <select class="form-control" id="book_id" name="book_id" required>
+            {% for book in books %}
+            <option value="{{ book.id }}" {% if loan.libro_id == book.id %}selected{% endif %}>
+                {{ book.nombre_libro }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="loan_date">Fecha de Préstamo:</label>
+        <input type="date" class="form-control" id="loan_date" name="loan_date" value="{{ loan.fecha_prestamo.strftime('%Y-%m-%d') }}" required>
+    </div>
+    <div class="form-group">
+        <label for="due_date">Fecha de Devolución:</label>
+        <input type="date" class="form-control" id="due_date" name="due_date" value="{{ loan.fecha_devolucion.strftime('%Y-%m-%d') }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar Préstamo</button>
+</form>
+{% endblock %}

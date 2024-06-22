@@ -33,45 +33,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Registrar Préstamo</button>
 </form>
-
-<!-- Listado de préstamos existentes -->
-<div class="card mt-4">
-    <div class="card-header">
-        Préstamos Registrados
-    </div>
-    <div class="card-body">
-        {% if loans %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Estudiante</th>
-                    <th scope="col">Libro</th>
-                    <th scope="col">Fecha de Préstamo</th>
-                    <th scope="col">Fecha de Devolución</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for loan in loans %}
-                <tr>
-                    <th scope="row">{{ loop.index }}</th>
-                    <td>{{ loan.student.full_name }}</td>
-                    <td>{{ loan.book.nombre_libro }}</td>
-                    <td>{{ loan.loan_date }}</td>
-                    <td>{{ loan.due_date }}</td>
-                    <td>
-                        <a class="btn btn-sm btn-info" href="#">Detalles</a>
-                        <a class="btn btn-sm btn-warning" href="#">Editar</a>
-                        <a class="btn btn-sm btn-danger" href="#">Eliminar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-        <p>No hay préstamos registrados.</p>
-        {% endif %}
-    </div>
-</div>
 {% endblock %}
