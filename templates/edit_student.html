@@ -4,19 +4,31 @@
 
 {% block content %}
 <h1>Editar Estudiante</h1>
-<form method="POST">
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
     <div class="form-group">
-        <label for="nombre_completo">Nombre Completo:</label>
-        <input type="text" class="form-control" id="nombre_completo" name="nombre_completo" value="{{ student.nombre_completo }}" required>
+        {{ form.nombre_completo.label }}
+        {{ form.nombre_completo(class="form-control") }}
+        {% for error in form.nombre_completo.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
     </div>
     <div class="form-group">
-        <label for="documento_identificacion">Documento de Identificación:</label>
-        <input type="text" class="form-control" id="documento_identificacion" name="documento_identificacion" value="{{ student.documento_identificacion }}" required>
+        {{ form.documento_identificacion.label }}
+        {{ form.documento_identificacion(class="form-control") }}
+        {% for error in form.documento_identificacion.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
     </div>
     <div class="form-group">
-        <label for="programa">Programa:</label>
-        <input type="text" class="form-control" id="programa" name="programa" value="{{ student.programa }}" required>
+        {{ form.programa.label }}
+        {{ form.programa(class="form-control") }}
+        {% for error in form.programa.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
     </div>
     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 </form>
+
+<script src="{{ url_for('static', filename='js/form_validation.js') }}"></script>
 {% endblock %}

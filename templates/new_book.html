@@ -4,22 +4,22 @@
 
 {% block content %}
 <h1>Nuevo Libro</h1>
-<form method="POST">
+<form method="POST" id="bookForm">
     <div class="form-group">
         <label for="nombre_autor">Nombre del Autor:</label>
-        <input type="text" class="form-control" id="nombre_autor" name="nombre_autor" required>
+        <input type="text" class="form-control" id="nombre_autor" name="nombre_autor" pattern="[A-Za-zÀ-ÿ\s]+" title="Solo se permiten letras y espacios, incluidas las tildes" required>
     </div>
     <div class="form-group">
-        <label for="fecha_nacimiento_autor">Fecha de Nacimiento del Autor:</label>
+        <label for="fecha_nacimiento_autor">Fecha de Nacimiento:</label>
         <input type="date" class="form-control" id="fecha_nacimiento_autor" name="fecha_nacimiento_autor" required>
     </div>
     <div class="form-group">
-        <label for="lugar_nacimiento_autor">Lugar de Nacimiento del Autor:</label>
-        <input type="text" class="form-control" id="lugar_nacimiento_autor" name="lugar_nacimiento_autor" required>
+        <label for="lugar_nacimiento_autor">Lugar de Nacimiento:</label>
+        <input type="text" class="form-control" id="lugar_nacimiento_autor" name="lugar_nacimiento_autor" pattern="[A-Za-zÀ-ÿ\s]+" title="Solo se permiten letras y espacios, incluidas las tildes" required>
     </div>
     <div class="form-group">
         <label for="nombre_libro">Nombre del Libro:</label>
-        <input type="text" class="form-control" id="nombre_libro" name="nombre_libro" required>
+        <input type="text" class="form-control" id="nombre_libro" name="nombre_libro" pattern="[A-Za-zÀ-ÿ\s0-9]+" title="Solo se permiten letras, números y espacios, incluidas las tildes" required>
     </div>
     <div class="form-group">
         <label for="fecha_publicacion">Fecha de Publicación:</label>
@@ -27,4 +27,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Guardar Libro</button>
 </form>
+
+<script src="{{ url_for('static', filename='js/form_validation.js') }}"></script>
 {% endblock %}
